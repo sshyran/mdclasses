@@ -531,6 +531,7 @@ public class XStreamFactory {
     xStream.registerConverter(new FormEventConverter());
     xStream.registerConverter(new DesignerFormItemConverter());
     xStream.registerConverter(new FormItemConverter());
+    xStream.registerConverter(new DynamicListExtInfoConverter());
   }
 
   private static List<Class<?>> createListClassesForForm() {

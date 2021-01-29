@@ -32,6 +32,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import java.util.Optional;
 
 public class ExtInfoConverter implements Converter {
+
   @Override
   public void marshal(Object source, HierarchicalStreamWriter writer, MarshallingContext context) {
     // noop
@@ -42,8 +43,7 @@ public class ExtInfoConverter implements Converter {
     ExtInfo item;
     var type = Optional.ofNullable(reader.getAttribute("xsi:type")).orElse(ExtInfo.UNKNOWN);
     if (type.equals("form:DynamicListExtInfo")) {
-      item = (ExtInfo) context.convertAnother(reader, DynamicListExtInfo.class,
-        XStreamFactory.getReflectionConverter());
+      item = (ExtInfo) context.convertAnother(reader, DynamicListExtInfo.class, new DynamicListExtInfoConverter());
     } else {
       item = new ExtInfo();
     }
@@ -55,4 +55,5 @@ public class ExtInfoConverter implements Converter {
   public boolean canConvert(Class type) {
     return type == ExtInfo.class;
   }
+
 }

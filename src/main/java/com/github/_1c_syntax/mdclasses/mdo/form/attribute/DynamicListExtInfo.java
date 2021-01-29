@@ -22,6 +22,7 @@
 package com.github._1c_syntax.mdclasses.mdo.form.attribute;
 
 import com.github._1c_syntax.mdclasses.mdo.wrapper.form.DesignerAttributeSetting;
+import com.github._1c_syntax.mdclasses.metadata.additional.SourcePosition;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ public class DynamicListExtInfo extends ExtInfo {
   private boolean getInvisibleFieldPresentations = true;
   private boolean customQuery = false;
   private String queryText = "";
+  private SourcePosition position;
 
   public DynamicListExtInfo(DesignerAttributeSetting setting) {
     setMainTable(setting.getMainTable());
