@@ -2,7 +2,7 @@ import java.util.*
 
 plugins {
     java
-    `maven-publish`
+    maven
     jacoco
     id("com.github.hierynomus.license") version "0.15.0"
     id("com.github.gradle-git-version-calculator") version "1.1.0"
