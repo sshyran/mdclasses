@@ -1,4 +1,5 @@
 import java.util.*
+import java.net.URI
 
 plugins {
     java
@@ -6,7 +7,7 @@ plugins {
     jacoco
     id("com.github.hierynomus.license") version "0.15.0"
     id("com.github.gradle-git-version-calculator") version "1.1.0"
-    id("io.franzbecker.gradle-lombok") version "4.0.0"
+    id("io.franzbecker.gradle-lombok") version "3.1.0"
     id("org.sonarqube") version "2.7.1"
 }
 
@@ -15,10 +16,10 @@ version = gitVersionCalculator.calculateVersion("v")
 
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io")
+    maven { url = URI("https://jitpack.io") }
 }
 
-val junitVersion = "5.6.1"
+val junitVersion = "5.5.2"
 dependencies {
 
     // https://mvnrepository.com/artifact/io.vavr/vavr
@@ -33,15 +34,15 @@ dependencies {
     implementation("org.slf4j", "slf4j-api", "1.7.30")
 
     // прочее
-    implementation("commons-io", "commons-io", "2.8.0")
-    implementation("org.apache.commons", "commons-lang3", "3.11")
+    implementation("commons-io", "commons-io", "2.6")
+    implementation("org.apache.commons", "commons-lang3", "3.9")
     implementation("com.github.1c-syntax", "utils", "0.2.1")
     // генерики
     compileOnly("org.projectlombok", "lombok", lombok.version)
     // тестирование
     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
-    testImplementation("org.assertj", "assertj-core", "3.18.1")
+    testImplementation("org.assertj", "assertj-core", "3.12.2")
     testImplementation("com.ginsberg", "junit5-system-exit", "1.0.0")
 }
 
