@@ -2,12 +2,12 @@ import java.net.URI
 import java.util.*
 
 plugins {
-    java
-    maven
+    `java-library`
+    `maven-publish`
     jacoco
     id("net.kyori.indra.license-header") version "1.3.1"
     id("com.github.gradle-git-version-calculator") version "1.1.0"
-    id("io.franzbecker.gradle-lombok") version "4.0.0"
+    id("io.freefair.lombok") version "6.0.0-m2"
     id("org.sonarqube") version "3.2.0"
 }
 
@@ -42,9 +42,6 @@ dependencies {
     // быстрый поиск классов
     implementation("org.atteo.classindex", "classindex", "3.10")
     annotationProcessor("org.atteo.classindex", "classindex", "3.10")
-
-    // генерики
-    compileOnly("org.projectlombok", "lombok", lombok.version)
 
     // тестирование
     testImplementation("org.junit.jupiter", "junit-jupiter-api", junitVersion)
@@ -107,11 +104,6 @@ sonarqube {
         property("sonar.exclusions", "**/gen/**/*.*")
         property("sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacoco.xml")
     }
-}
-
-lombok {
-    version = "1.18.16"
-    sha256 = "7206cbbfd6efd5e85bceff29545633645650be58d58910a23b0d4835fbd15ed7"
 }
 
 license {
