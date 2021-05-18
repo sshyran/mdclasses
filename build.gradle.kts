@@ -32,7 +32,6 @@ dependencies {
 
     // логирование
     implementation("org.slf4j", "slf4j-api", "1.7.30")
-    implementation("org.slf4j", "slf4j-nop", "1.7.30")
 
     // прочее
     implementation("commons-io", "commons-io", "2.8.0")
@@ -48,6 +47,10 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", junitVersion)
     testImplementation("org.assertj", "assertj-core", "3.18.1")
     testImplementation("com.ginsberg", "junit5-system-exit", "1.0.0")
+
+    // логирование
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    testImplementation("org.slf4j", "slf4j-log4j12", "1.7.30")
 }
 
 configure<JavaPluginConvention> {
