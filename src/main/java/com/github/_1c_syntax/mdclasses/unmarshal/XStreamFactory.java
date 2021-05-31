@@ -203,6 +203,7 @@ public class XStreamFactory {
 
     registerClassesByMetadata(xStream);
 
+    xStream.processAnnotations(MDConfiguration.class);
     xStream.processAnnotations(AccountingFlag.class);
     xStream.processAnnotations(DataPath.class);
     xStream.processAnnotations(MDOModule.class);
