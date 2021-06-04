@@ -1089,7 +1089,7 @@
             <xs:element name="Help" type="ns6:ExternalProperty"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="DataProcessor">
+    <xs:complexType name="ExternalDataProcessor">
         <xs:complexContent>
             <xs:extension base="tns:MDObjectBase">
                 <xs:sequence>

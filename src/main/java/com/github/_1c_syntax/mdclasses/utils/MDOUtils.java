@@ -164,6 +164,10 @@ public class MDOUtils {
         case WEB_SERVICE:
           types.add(ModuleType.WEBServiceModule);
           break;
+        case EXTERNAL_REPORT:
+        case EXTERNAL_DATA_PROCESSOR:
+          types.add(ModuleType.ObjectModule);
+          break;
         default:
           // non
       }

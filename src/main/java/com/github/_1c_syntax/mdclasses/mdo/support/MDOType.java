@@ -94,7 +94,12 @@ public enum MDOType {
   HTTP_SERVICE_URL_TEMPLATE("URLTemplate", "URLTemplates", "ШаблонURL", "ШаблоныURL"),
   HTTP_SERVICE_METHOD("Method", "Methods", "Метод", "Методы"),
   INTEGRATION_SERVICE_CHANNEL("IntegrationServiceChannel", "IntegrationServiceChannels", "КаналСервисаИнтеграции", "Каналы"),
-  UNKNOWN("", "", "", "");
+  UNKNOWN("", "", "", ""),
+
+  EXTERNAL_REPORT("ExternalReport", "ExternalReports", "ВнешнийОтчет", "ВнешниеОтчеты"),
+  EXTERNAL_DATA_PROCESSOR("ExternalDataProcessor", "ExternalDataProcessors", "ВнешняяОбработка", "ВнешниеОбработки")
+
+  ;
 
   private static final Map<String, MDOType> MAP_TYPES = computeMapTypes();
   private static final Set<MDOType> CHILD_TYPES = computeChildTypes();

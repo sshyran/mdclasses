@@ -47,7 +47,9 @@ import com.github._1c_syntax.mdclasses.utils.MDOFactory;
 import com.github._1c_syntax.mdclasses.utils.MDOPathUtils;
 import com.github._1c_syntax.mdclasses.utils.MDOUtils;
 import io.vavr.control.Either;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 
@@ -70,7 +72,7 @@ import java.util.stream.Collectors;
  */
 @Data
 @Slf4j
-public class Configuration {
+public class Configuration implements MDClass {
 
   /**
    * Имя конфигурации
@@ -194,6 +196,7 @@ public class Configuration {
   /**
    * Корневой каталог конфигурации
    */
+  @Getter(AccessLevel.NONE)
   private Path rootPath;
   /**
    * Роли
@@ -342,7 +345,8 @@ public class Configuration {
   public static Configuration create(Path rootPath) {
     var configurationSource = MDOUtils.getConfigurationSourceByPath(rootPath);
     if (configurationSource != ConfigurationSource.EMPTY) {
-      var configurationMDO = MDOFactory.readMDOConfiguration(configurationSource, rootPath);
+      var configurationMDO = MDOFactory.readMDClass(configurationSource,
+        rootPath, MDOType.CONFIGURATION);
       if (configurationMDO.isPresent()) {
         var mdoConfiguration = (MDConfiguration) configurationMDO.get();
         if (mdoConfiguration.getObjectBelonging() == ObjectBelonging.ADOPTED) {
@@ -356,6 +360,7 @@ public class Configuration {
     return create();
   }
 
+  @Override
   public Optional<Path> getRootPath() {
     if (rootPath == null) {
       return Optional.empty();
@@ -366,6 +371,7 @@ public class Configuration {
   /**
    * Возвращает тип модуля по ссылке на его файл
    */
+  @Override
   public ModuleType getModuleType(URI uri) {
     return modulesByType.getOrDefault(uri, ModuleType.UNKNOWN);
   }
@@ -392,6 +398,7 @@ public class Configuration {
    * @param mdoRef Строковая ссылка на объект
    * @return Соответствие ссылки на файл и его тип
    */
+  @Override
   public Map<ModuleType, URI> getModulesByMDORef(String mdoRef) {
     return modulesByMDORef.getOrDefault(mdoRef, Collections.emptyMap());
   }
@@ -402,6 +409,7 @@ public class Configuration {
    * @param mdoRef Ссылка на объект
    * @return Соответствие ссылки на файл и его тип
    */
+  @Override
   public Map<ModuleType, URI> getModulesByMDORef(MDOReference mdoRef) {
     return getModulesByMDORef(mdoRef.getMdoRef());
   }

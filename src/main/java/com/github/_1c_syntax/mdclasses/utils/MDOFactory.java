@@ -48,11 +48,12 @@ import java.util.Optional;
 public class MDOFactory {
 
   /**
-   * Читает конфигурацию из корня проекта
+   * Читает объект из корня каталога
    */
-  public Optional<AbstractMDObjectBase> readMDOConfiguration(ConfigurationSource configurationSource, Path rootPath) {
-    return MDOPathUtils.getMDOPath(configurationSource, rootPath,
-      MDOType.CONFIGURATION, MDOType.CONFIGURATION.getName())
+  public Optional<AbstractMDObjectBase> readMDClass(ConfigurationSource configurationSource,
+                                                    Path rootPath,
+                                                    MDOType type) {
+    return MDOPathUtils.getMDOPath(configurationSource, rootPath, type, type.getName())
       .flatMap(MDOFactory::readMDObject);
   }
 
