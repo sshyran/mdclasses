@@ -25,6 +25,7 @@ import com.github._1c_syntax.mdclasses.common.ConfigurationSource;
 import com.github._1c_syntax.mdclasses.mdo.MDExternalReport;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOType;
 import com.github._1c_syntax.mdclasses.utils.MDOFactory;
+import com.github._1c_syntax.mdclasses.utils.MDOPathUtils;
 import com.github._1c_syntax.mdclasses.utils.MDOUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -55,16 +56,19 @@ public class ExternalReport extends ExternalMDClass {
   /**
    * Метод создания внешнего отчета по каталогу исходных файлов
    *
-   * @param rootPath - Адрес корневого каталога конфигурации
+   * @param mdoPath - Адрес корневого файла отчета
    */
-  public static ExternalReport create(Path rootPath) {
-    var configurationSource = MDOUtils.getConfigurationSourceByPath(rootPath);
+  public static ExternalReport create(Path mdoPath) {
+    var configurationSource = MDOUtils.getConfigurationSourceByMDOPath(mdoPath);
     if (configurationSource != ConfigurationSource.EMPTY) {
-      var externalReportMDO = MDOFactory.readMDClass(configurationSource,
-        rootPath, MDOType.EXTERNAL_REPORT);
-      if (externalReportMDO.isPresent()) {
-        var mdoExternalReport = (MDExternalReport) externalReportMDO.get();
-        return new ExternalReport(mdoExternalReport, configurationSource, rootPath);
+      var rootPath = MDOPathUtils.getRootPathByConfigurationMDO(mdoPath);
+      if (rootPath.isPresent()) {
+        var externalDataProcessorMDO = MDOFactory.readMDClass(configurationSource,
+          mdoPath, MDOType.EXTERNAL_REPORT);
+        if (externalDataProcessorMDO.isPresent()) {
+          var mdoExternalReport = (MDExternalReport) externalDataProcessorMDO.get();
+          return new ExternalReport(mdoExternalReport, configurationSource, rootPath.get());
+        }
       }
     }
 

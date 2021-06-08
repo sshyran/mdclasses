@@ -25,6 +25,7 @@ import com.github._1c_syntax.mdclasses.common.ConfigurationSource;
 import com.github._1c_syntax.mdclasses.mdo.MDExternalDataProcessor;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOType;
 import com.github._1c_syntax.mdclasses.utils.MDOFactory;
+import com.github._1c_syntax.mdclasses.utils.MDOPathUtils;
 import com.github._1c_syntax.mdclasses.utils.MDOUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -54,18 +55,21 @@ public class ExternalDataProcessor extends ExternalMDClass {
   }
 
   /**
-   * Метод создания внешней обработки по каталогу исходных файлов
+   * Метод создания внешней обработки по mdo/xml файлу
    *
-   * @param rootPath - Адрес корневого каталога конфигурации
+   * @param mdoPath - Адрес корневого файла внешней обработки
    */
-  public static ExternalDataProcessor create(Path rootPath) {
-    var configurationSource = MDOUtils.getConfigurationSourceByPath(rootPath);
+  public static ExternalDataProcessor create(Path mdoPath) {
+    var configurationSource = MDOUtils.getConfigurationSourceByMDOPath(mdoPath);
     if (configurationSource != ConfigurationSource.EMPTY) {
-      var externalDataProcessorMDO = MDOFactory.readMDClass(configurationSource,
-        rootPath, MDOType.EXTERNAL_DATA_PROCESSOR);
-      if (externalDataProcessorMDO.isPresent()) {
-        var mdoExternalDataProcessor = (MDExternalDataProcessor) externalDataProcessorMDO.get();
-        return new ExternalDataProcessor(mdoExternalDataProcessor, configurationSource, rootPath);
+      var rootPath = MDOPathUtils.getRootPathByConfigurationMDO(mdoPath);
+      if (rootPath.isPresent()) {
+        var externalDataProcessorMDO = MDOFactory.readMDClass(configurationSource,
+          mdoPath, MDOType.EXTERNAL_DATA_PROCESSOR);
+        if (externalDataProcessorMDO.isPresent()) {
+          var mdoExternalDataProcessor = (MDExternalDataProcessor) externalDataProcessorMDO.get();
+          return new ExternalDataProcessor(mdoExternalDataProcessor, configurationSource, rootPath.get());
+        }
       }
     }
 

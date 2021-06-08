@@ -19,10 +19,8 @@
  * You should have received a copy of the GNU Lesser General Public
  * License along with MDClasses.
  */
-package com.github._1c_syntax.mdclasses.metadata;
+package com.github._1c_syntax.mdclasses;
 
-import com.github._1c_syntax.mdclasses.Configuration;
-import com.github._1c_syntax.mdclasses.ConfigurationExtension;
 import com.github._1c_syntax.mdclasses.common.CompatibilityMode;
 import com.github._1c_syntax.mdclasses.common.ConfigurationSource;
 import com.github._1c_syntax.mdclasses.mdo.AbstractMDOForm;
@@ -84,16 +82,16 @@ class ConfigurationTest {
         && copyright.getLanguage().equals("en"));
 
     assertThat(configuration.getBriefInformation()).hasSize(2)
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
-                    && briefInfo.getContent().equals("Краткая информация"))
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
-                    && briefInfo.getContent().equals("Short info"));
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
+        && briefInfo.getContent().equals("Краткая информация"))
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
+        && briefInfo.getContent().equals("Short info"));
 
     assertThat(configuration.getDetailedInformation()).hasSize(2)
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
-                    && briefInfo.getContent().equals("Подробная информация"))
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
-                    && briefInfo.getContent().equals("Detailed info"));
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
+        && briefInfo.getContent().equals("Подробная информация"))
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
+        && briefInfo.getContent().equals("Detailed info"));
 
     assertThat(configuration.getModulesByType()).hasSize(38);
     assertThat(configuration.getModulesBySupport()).isEmpty();
@@ -346,16 +344,16 @@ class ConfigurationTest {
         && copyright.getLanguage().equals("en"));
 
     assertThat(configuration.getBriefInformation()).hasSize(2)
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
-                    && briefInfo.getContent().equals("Краткая информация"))
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
-                    && briefInfo.getContent().equals("Short info"));
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
+        && briefInfo.getContent().equals("Краткая информация"))
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
+        && briefInfo.getContent().equals("Short info"));
 
     assertThat(configuration.getDetailedInformation()).hasSize(2)
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
-                    && briefInfo.getContent().equals("Подробная информация"))
-            .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
-                    && briefInfo.getContent().equals("Detailed info"));
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("ru")
+        && briefInfo.getContent().equals("Подробная информация"))
+      .anyMatch(briefInfo -> briefInfo.getLanguage().equals("en")
+        && briefInfo.getContent().equals("Detailed info"));
 
     assertThat(configuration.getModulesBySupport()).isEmpty();
     assertThat(configuration.getModulesByObject()).hasSize(18);

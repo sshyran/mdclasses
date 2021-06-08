@@ -65,7 +65,9 @@ public class MDOUtils {
    * Определяет тип исходников по MDO файлу
    */
   public ConfigurationSource getConfigurationSourceByMDOPath(Path path) {
-    if (path.toString().endsWith(MDOPathUtils.mdoExtension(ConfigurationSource.DESIGNER, true))) {
+    if (path == null) {
+      return ConfigurationSource.EMPTY;
+    } else if (path.toString().endsWith(MDOPathUtils.mdoExtension(ConfigurationSource.DESIGNER, true))) {
       return ConfigurationSource.DESIGNER;
     } else {
       return ConfigurationSource.EDT;

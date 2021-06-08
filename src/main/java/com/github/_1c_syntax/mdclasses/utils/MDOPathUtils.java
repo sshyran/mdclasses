@@ -66,15 +66,19 @@ public class MDOPathUtils {
    */
   public Optional<Path> getMDOPath(ConfigurationSource configurationSource,
                                    Path rootPath, MDOType type, String name) {
-    Path value;
-    if (configurationSource == ConfigurationSource.EDT) {
+    Path value = null;
+    if ((type == MDOType.EXTERNAL_DATA_PROCESSOR || type == MDOType.EXTERNAL_REPORT)) {
+      if (rootPath.toString().endsWith(mdoExtension(configurationSource, true))) {
+        return Optional.of(rootPath);
+      }
+    } else if (configurationSource == ConfigurationSource.EDT) {
       value = getMDOPathEDT(getMDOTypeFolderPathEDT(rootPath, type), name);
     } else if (configurationSource == ConfigurationSource.DESIGNER) {
       value = getMDOPathDesigner(getMDOTypeFolderPathDesigner(rootPath, type), name);
     } else {
       return Optional.empty();
     }
-    return Optional.of(value);
+    return Optional.ofNullable(value);
   }
 
   /**

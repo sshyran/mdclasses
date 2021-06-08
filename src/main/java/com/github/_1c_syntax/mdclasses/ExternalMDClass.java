@@ -25,7 +25,6 @@ import com.github._1c_syntax.mdclasses.common.ConfigurationSource;
 import com.github._1c_syntax.mdclasses.mdo.AbstractMDObjectBSL;
 import com.github._1c_syntax.mdclasses.mdo.AbstractMDObjectBase;
 import com.github._1c_syntax.mdclasses.mdo.AbstractMDObjectComplex;
-import com.github._1c_syntax.mdclasses.mdo.MDExternalDataProcessor;
 import com.github._1c_syntax.mdclasses.mdo.MDOHasChildren;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOModule;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOReference;
@@ -95,7 +94,7 @@ public abstract class ExternalMDClass implements MDClass {
    */
   private Map<MDOReference, AbstractMDObjectBase> childrenByMdoRef;
   /**
-   * Корневой каталог конфигурации
+   * Корневой файл
    */
   @Getter(AccessLevel.NONE)
   private Path rootPath;
