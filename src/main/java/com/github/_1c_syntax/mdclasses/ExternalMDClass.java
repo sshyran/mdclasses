@@ -96,7 +96,6 @@ public abstract class ExternalMDClass implements MDClass {
   /**
    * Корневой файл
    */
-  @Getter(AccessLevel.NONE)
   private Path rootPath;
 
   protected ExternalMDClass() {
@@ -147,10 +146,7 @@ public abstract class ExternalMDClass implements MDClass {
 
   @Override
   public Optional<Path> getRootPath() {
-    if (rootPath == null) {
-      return Optional.empty();
-    }
-    return Optional.of(rootPath);
+    return Optional.ofNullable(rootPath);
   }
 
   @Override

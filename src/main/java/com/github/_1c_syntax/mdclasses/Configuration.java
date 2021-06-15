@@ -196,7 +196,6 @@ public class Configuration implements MDClass {
   /**
    * Корневой каталог конфигурации
    */
-  @Getter(AccessLevel.NONE)
   private Path rootPath;
   /**
    * Роли
