@@ -29,9 +29,7 @@ import com.github._1c_syntax.mdclasses.mdo.MDOHasChildren;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOModule;
 import com.github._1c_syntax.mdclasses.mdo.support.MDOReference;
 import com.github._1c_syntax.mdclasses.mdo.support.ModuleType;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 
 import java.net.URI;
