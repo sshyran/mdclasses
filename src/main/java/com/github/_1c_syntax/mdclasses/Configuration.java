@@ -47,9 +47,7 @@ import com.github._1c_syntax.mdclasses.utils.MDOFactory;
 import com.github._1c_syntax.mdclasses.utils.MDOPathUtils;
 import com.github._1c_syntax.mdclasses.utils.MDOUtils;
 import io.vavr.control.Either;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 
@@ -463,7 +461,7 @@ public class Configuration implements MDClass {
     List<AbstractMDObjectBase> children) {
 
     return children.stream().collect(Collectors.groupingBy(AbstractMDObjectBase::getType));
-    
+
   }
 
 }

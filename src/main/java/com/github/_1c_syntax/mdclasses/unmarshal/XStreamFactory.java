@@ -117,13 +117,14 @@ import java.util.Locale;
 @Slf4j
 @UtilityClass
 public class XStreamFactory {
-  private final String ATTRIBUTE_FIELD_NAME = "attributes";
-  private final String CHILDREN_FIELD_NAME = "children";
   /**
    * Используется для чтения элементов формы (см. FormEventConverter, DesignerFormItemConverter)
    */
   @Getter
   private static Converter reflectionConverter;
+
+  private final String ATTRIBUTE_FIELD_NAME = "attributes";
+  private final String CHILDREN_FIELD_NAME = "children";
   @Getter(lazy = true)
   private final XStream xstream = createXMLMapper();
 

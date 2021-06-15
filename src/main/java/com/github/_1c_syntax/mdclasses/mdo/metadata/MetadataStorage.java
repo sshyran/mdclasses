@@ -76,24 +76,24 @@ public final class MetadataStorage {
 
   private static <T extends Annotation> Map<Class<?>, T> computeStorage(Class<T> annotation) {
     try (var scanResult = new ClassGraph()
-            .enableClassInfo()
-            .enableAnnotationInfo()
-            .acceptPackages("com.github._1c_syntax.mdclasses")
-            .scan()) {
+      .enableClassInfo()
+      .enableAnnotationInfo()
+      .acceptPackages("com.github._1c_syntax.mdclasses")
+      .scan()) {
 
       Map<Class<?>, T> localStorage = new HashMap<>();
       var classes = scanResult.getClassesWithAnnotation(annotation.getName());
       classes.stream()
-              .map(getClassFromInfoClass())
-              .filter(Objects::nonNull)
-              .forEach(aClass -> localStorage.put(aClass, aClass.getAnnotation(annotation)));
+        .map(getClassFromInfoClass())
+        .filter(Objects::nonNull)
+        .forEach(aClass -> localStorage.put(aClass, aClass.getAnnotation(annotation)));
 
       return Collections.unmodifiableMap(localStorage);
     }
   }
 
   private static Function<ClassInfo, ? extends Class<?>> getClassFromInfoClass() {
-    return classInfo -> {
+    return (ClassInfo classInfo) -> {
       try {
         return Class.forName(classInfo.getName());
       } catch (ClassNotFoundException e) {

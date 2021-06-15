@@ -148,7 +148,7 @@ public class FormData {
     }
   }
 
-  public void fillPlainChildren(List<FormItem> itemList) {
+  public void fillPlainChildren(Iterable<FormItem> itemList) {
     itemList.forEach((FormItem formItem) -> {
       plainChildren.add(formItem);
       fillPlainChildren(formItem.getChildren());
