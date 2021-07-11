@@ -133,6 +133,7 @@ license {
     exclude("**/*.os")
     exclude("**/*.bsl")
     exclude("**/*.orig")
+    exclude("**/ConcurrentFieldDictionary.java")
 }
 
 publishing {

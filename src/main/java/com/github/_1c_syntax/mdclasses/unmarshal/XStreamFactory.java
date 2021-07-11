@@ -154,7 +154,7 @@ public class XStreamFactory {
     qNameMap.registerMapping(new QName("http://g5.1c.ru/v8/dt/form", "Form", "form"), FormData.class);
     qNameMap.registerMapping(new QName("http://v8.1c.ru/8.3/xcf/logform", "Form"), DesignerFormWrapper.class);
 
-    var xStream = new XStream(new PureJavaReflectionProvider(), new ExtendStaxDriver(qNameMap)) {
+    var xStream = new XStream(new PureJavaReflectionProvider(new ConcurrentFieldDictionary()), new ExtendStaxDriver(qNameMap)) {
 
       // TODO как починят https://github.com/x-stream/xstream/issues/101
       // После исправления бага (с 2017 года) убрать этот код
