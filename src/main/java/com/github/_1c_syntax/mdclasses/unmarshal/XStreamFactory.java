@@ -90,6 +90,7 @@ import com.thoughtworks.xstream.converters.basic.StringConverter;
 import com.thoughtworks.xstream.converters.collections.CollectionConverter;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
+import com.thoughtworks.xstream.core.util.WeakCache;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
@@ -104,6 +105,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Класс для чтения XML и MDO файлов конфигурации
@@ -174,7 +176,7 @@ public class XStreamFactory {
         registerConverter(new ShortConverter(), PRIORITY_NORMAL);
         registerConverter(new BooleanConverter(), PRIORITY_NORMAL);
         registerConverter(new ByteConverter(), PRIORITY_NORMAL);
-        registerConverter(new StringConverter(), PRIORITY_NORMAL);
+        registerConverter(new StringConverter(new ConcurrentHashMap<>(new WeakCache())), PRIORITY_NORMAL);
         registerConverter(new DateConverter(), PRIORITY_NORMAL);
         registerConverter(new CollectionConverter(getMapper()), PRIORITY_NORMAL);
         registerConverter(reflectionConverter, PRIORITY_VERY_LOW);
