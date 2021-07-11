@@ -92,6 +92,7 @@ import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider
 import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 import com.thoughtworks.xstream.core.util.WeakCache;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
+import com.thoughtworks.xstream.mapper.Mapper;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
 import lombok.Getter;
@@ -166,7 +167,10 @@ public class XStreamFactory {
        */
       @Override
       protected void setupConverters() {
-        reflectionConverter = new ReflectionConverter(getMapper(), getReflectionProvider());
+
+        var cachingMapper = new ConcurrentCachingMapper(getMapper());
+
+        reflectionConverter = new ReflectionConverter(cachingMapper, getReflectionProvider());
 
         registerConverter(new NullConverter(), PRIORITY_VERY_HIGH);
         registerConverter(new IntConverter(), PRIORITY_NORMAL);
@@ -178,7 +182,7 @@ public class XStreamFactory {
         registerConverter(new ByteConverter(), PRIORITY_NORMAL);
         registerConverter(new StringConverter(new ConcurrentHashMap<>(new WeakCache())), PRIORITY_NORMAL);
         registerConverter(new DateConverter(), PRIORITY_NORMAL);
-        registerConverter(new CollectionConverter(getMapper()), PRIORITY_NORMAL);
+        registerConverter(new CollectionConverter(cachingMapper), PRIORITY_NORMAL);
         registerConverter(reflectionConverter, PRIORITY_VERY_LOW);
       }
     };

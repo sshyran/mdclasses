@@ -135,6 +135,7 @@ license {
     exclude("**/*.orig")
     exclude("**/ConcurrentFieldDictionary.java")
     exclude("**/ConcurrentQNameMap.java")
+    exclude("**/ConcurrentCachingMapper.java")
 }
 
 publishing {
