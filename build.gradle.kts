@@ -134,6 +134,7 @@ license {
     exclude("**/*.bsl")
     exclude("**/*.orig")
     exclude("**/ConcurrentFieldDictionary.java")
+    exclude("**/ConcurrentQNameMap.java")
 }
 
 publishing {

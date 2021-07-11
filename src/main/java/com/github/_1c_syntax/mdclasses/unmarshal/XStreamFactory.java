@@ -91,7 +91,6 @@ import com.thoughtworks.xstream.converters.collections.CollectionConverter;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 import com.thoughtworks.xstream.converters.reflection.ReflectionConverter;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
-import com.thoughtworks.xstream.io.xml.QNameMap;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
 import lombok.Getter;
@@ -150,7 +149,7 @@ public class XStreamFactory {
 
   private XStream createXMLMapper() {
     // данный провайдер необходим для корректной обработки значений по умолчанию, чтобы не было null
-    var qNameMap = new QNameMap();
+    var qNameMap = new ConcurrentQNameMap();
     qNameMap.registerMapping(new QName("http://g5.1c.ru/v8/dt/form", "Form", "form"), FormData.class);
     qNameMap.registerMapping(new QName("http://v8.1c.ru/8.3/xcf/logform", "Form"), DesignerFormWrapper.class);
 
