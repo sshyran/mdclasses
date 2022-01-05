@@ -92,6 +92,7 @@ public class FormAttribute {
     if (designerAttribute.getType() != null) {
       var list = designerAttribute.getType().getTypes().stream()
         .map(value -> value.replace("cfg:", "")) // TODO: чтение типов реквизитов
+        .map(String::intern)
         .collect(Collectors.toList());
       setValueTypes(list);
     }
