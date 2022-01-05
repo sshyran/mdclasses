@@ -21,6 +21,8 @@
  */
 package com.github._1c_syntax.mdclasses.mdo.support;
 
+import com.github._1c_syntax.mdclasses.unmarshal.converters.StringConverterIntern;
+import com.thoughtworks.xstream.annotations.XStreamConverter;
 import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import lombok.Data;
 
@@ -30,5 +32,6 @@ import java.util.List;
 @Data
 public class ValueType {
   @XStreamImplicit
+  @XStreamConverter(StringConverterIntern.class)
   private List<String> types = Collections.emptyList();
 }
