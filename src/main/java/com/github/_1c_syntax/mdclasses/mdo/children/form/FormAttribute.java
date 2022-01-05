@@ -22,6 +22,7 @@
 package com.github._1c_syntax.mdclasses.mdo.children.form;
 
 import com.github._1c_syntax.mdclasses.unmarshal.converters.ExtInfoConverter;
+import com.github._1c_syntax.mdclasses.unmarshal.converters.StringConverterIntern;
 import com.github._1c_syntax.mdclasses.unmarshal.converters.ValueTypeConverter;
 import com.github._1c_syntax.mdclasses.unmarshal.wrapper.form.DesignerAttribute;
 import com.github._1c_syntax.mdclasses.unmarshal.wrapper.form.DesignerColumn;
@@ -44,6 +45,7 @@ public class FormAttribute {
   /**
    * Имя реквизита
    */
+  @XStreamConverter(StringConverterIntern.class)
   private String name;
   /**
    * Идентификатор реквизита, в конфигураторе не отображается.
