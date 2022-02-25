@@ -22,6 +22,7 @@
 package com.github._1c_syntax.mdclasses.unmarshal.converters;
 
 import com.github._1c_syntax.mdclasses.mdo.support.ValueType;
+import com.github._1c_syntax.mdclasses.unmarshal.StringInternerHolder;
 import com.github._1c_syntax.mdclasses.unmarshal.XStreamFactory;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
@@ -41,7 +42,9 @@ public class ValueTypeConverter implements Converter {
   public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
     var valueType = (ValueType) context.convertAnother(reader, ValueType.class,
       XStreamFactory.getReflectionConverter());
-    return valueType.getTypes().stream().map(String::intern).collect(Collectors.toList());
+    return valueType.getTypes().stream()
+      .map(type -> StringInternerHolder.getStringInterner().intern(type))
+      .collect(Collectors.toList());
   }
 
   @Override

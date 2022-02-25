@@ -21,6 +21,7 @@
  */
 package com.github._1c_syntax.mdclasses.mdo.children.form;
 
+import com.github._1c_syntax.mdclasses.unmarshal.StringInternerHolder;
 import com.github._1c_syntax.mdclasses.unmarshal.converters.ExtInfoConverter;
 import com.github._1c_syntax.mdclasses.unmarshal.converters.StringConverterIntern;
 import com.github._1c_syntax.mdclasses.unmarshal.converters.ValueTypeConverter;
@@ -92,7 +93,7 @@ public class FormAttribute {
     if (designerAttribute.getType() != null) {
       var list = designerAttribute.getType().getTypes().stream()
         .map(value -> value.replace("cfg:", "")) // TODO: чтение типов реквизитов
-        .map(String::intern)
+        .map(type -> StringInternerHolder.getStringInterner().intern(type))
         .collect(Collectors.toList());
       setValueTypes(list);
     }
