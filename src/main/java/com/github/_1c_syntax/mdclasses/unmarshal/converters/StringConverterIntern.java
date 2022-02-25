@@ -21,12 +21,10 @@
  */
 package com.github._1c_syntax.mdclasses.unmarshal.converters;
 
-import com.github._1c_syntax.utils.StringInterner;
+import com.github._1c_syntax.mdclasses.unmarshal.StringInternerHolder;
 import com.thoughtworks.xstream.converters.basic.StringConverter;
 
 public class StringConverterIntern extends StringConverter {
-
-  private final StringInterner stringInterner = new StringInterner();
 
   public StringConverterIntern() {
     super();
@@ -34,6 +32,6 @@ public class StringConverterIntern extends StringConverter {
 
   @Override
   public Object fromString(String str) {
-    return stringInterner.intern((String) super.fromString(str));
+    return StringInternerHolder.getStringInterner().intern((String) super.fromString(str));
   }
 }

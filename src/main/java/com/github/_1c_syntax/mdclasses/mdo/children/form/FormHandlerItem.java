@@ -21,9 +21,9 @@
  */
 package com.github._1c_syntax.mdclasses.mdo.children.form;
 
+import com.github._1c_syntax.mdclasses.unmarshal.StringInternerHolder;
 import com.github._1c_syntax.mdclasses.unmarshal.converters.StringConverterIntern;
 import com.github._1c_syntax.mdclasses.unmarshal.wrapper.form.DesignerEvent;
-import com.github._1c_syntax.utils.StringInterner;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,8 +31,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class FormHandlerItem {
-
-  private static final StringInterner INTERNER = new StringInterner();
 
   /**
    * Имя события элемента формы (в том числе формы)
@@ -51,6 +49,6 @@ public class FormHandlerItem {
    */
   public FormHandlerItem(DesignerEvent designerEvent) {
     setName(designerEvent.getValue());
-    setEvent(INTERNER.intern(designerEvent.getName()));
+    setEvent(StringInternerHolder.getStringInterner().intern(designerEvent.getName()));
   }
 }

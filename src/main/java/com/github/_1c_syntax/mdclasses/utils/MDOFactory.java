@@ -30,6 +30,7 @@ import com.github._1c_syntax.mdclasses.mdo.children.template.DataCompositionSche
 import com.github._1c_syntax.mdclasses.mdo.support.MDOType;
 import com.github._1c_syntax.mdclasses.mdo.support.RoleData;
 import com.github._1c_syntax.mdclasses.mdo.support.ScriptVariant;
+import com.github._1c_syntax.mdclasses.unmarshal.StringInternerHolder;
 import com.github._1c_syntax.mdclasses.unmarshal.XStreamFactory;
 import lombok.experimental.UtilityClass;
 
@@ -47,9 +48,17 @@ public class MDOFactory {
    * Читает конфигурацию из корня проекта
    */
   public Optional<AbstractMDObjectBase> readMDOConfiguration(ConfigurationSource configurationSource, Path rootPath) {
-    return MDOPathUtils.getMDOPath(configurationSource, rootPath,
-      MDOType.CONFIGURATION, MDOType.CONFIGURATION.getName())
+    var configuration = MDOPathUtils.getMDOPath(
+        configurationSource,
+        rootPath,
+        MDOType.CONFIGURATION,
+        MDOType.CONFIGURATION.getName()
+      )
       .flatMap(MDOFactory::readMDObject);
+
+    StringInternerHolder.getStringInterner().clear();
+
+    return configuration;
   }
 
   /**
