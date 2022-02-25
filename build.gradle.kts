@@ -38,7 +38,7 @@ dependencies {
     // прочее
     implementation("commons-io", "commons-io", "2.8.0")
     implementation("org.apache.commons", "commons-lang3", "3.11")
-    implementation("com.github.1c-syntax", "utils", "0.2.1")
+    implementation("com.github.1c-syntax", "utils", "48335fb954fb94c0468b8a56399026a5247a7396")
 
     // быстрый поиск классов
     implementation("io.github.classgraph:classgraph:4.8.106")
