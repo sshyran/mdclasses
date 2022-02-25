@@ -48,7 +48,8 @@ public class FormHandlerItem {
    * @param designerEvent - модель данных формата конфигуратора
    */
   public FormHandlerItem(DesignerEvent designerEvent) {
-    setName(designerEvent.getValue());
-    setEvent(StringInternerHolder.getStringInterner().intern(designerEvent.getName()));
+    var stringInterner = StringInternerHolder.getStringInterner();
+    setName(stringInterner.intern(designerEvent.getValue()));
+    setEvent(stringInterner.intern(designerEvent.getName()));
   }
 }
